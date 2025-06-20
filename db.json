@@ -1,0 +1,396 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "name": "張三",
+      "email": "zhang.san@company.com",
+      "avatar": "https://via.placeholder.com/150",
+      "role": "admin",
+      "department": "開發部",
+      "joinDate": "2023-01-15",
+      "isActive": true,
+      "skills": [
+        "TypeScript",
+        "Vue.js",
+        "Node.js",
+        "Python"
+      ],
+      "createdAt": "2023-01-15T08:00:00Z",
+      "updatedAt": "2024-01-15T10:30:00Z"
+    },
+    {
+      "id": "2",
+      "name": "李四",
+      "email": "li.si@company.com",
+      "avatar": "https://via.placeholder.com/150",
+      "role": "user",
+      "department": "產品部",
+      "joinDate": "2023-03-20",
+      "isActive": true,
+      "skills": [
+        "JavaScript",
+        "React",
+        "Product Management"
+      ],
+      "createdAt": "2023-03-20T09:15:00Z",
+      "updatedAt": "2024-01-10T14:20:00Z"
+    },
+    {
+      "id": "3",
+      "name": "王五",
+      "email": "wang.wu@company.com",
+      "avatar": "https://via.placeholder.com/150",
+      "role": "manager",
+      "department": "設計部",
+      "joinDate": "2022-11-10",
+      "isActive": true,
+      "skills": [
+        "UI/UX Design",
+        "Figma",
+        "Adobe Creative Suite"
+      ],
+      "createdAt": "2022-11-10T10:00:00Z",
+      "updatedAt": "2024-01-05T16:45:00Z"
+    },
+    {
+      "id": "4",
+      "name": "趙六",
+      "email": "zhao.liu@company.com",
+      "avatar": "https://via.placeholder.com/150",
+      "role": "user",
+      "department": "營運部",
+      "joinDate": "2023-06-01",
+      "isActive": false,
+      "skills": [
+        "Data Analysis",
+        "Excel",
+        "SQL"
+      ],
+      "createdAt": "2023-06-01T11:30:00Z",
+      "updatedAt": "2023-12-20T09:00:00Z"
+    },
+    {
+      "id": "5",
+      "name": "孫七",
+      "email": "sun.qi@company.com",
+      "avatar": "https://via.placeholder.com/150",
+      "role": "user",
+      "department": "人資部",
+      "joinDate": "2023-08-15",
+      "isActive": true,
+      "skills": [
+        "HR Management",
+        "Recruitment",
+        "Training"
+      ],
+      "createdAt": "2023-08-15T13:20:00Z",
+      "updatedAt": "2024-01-12T11:10:00Z"
+    },
+    {
+      "id": "6",
+      "name": "周八",
+      "email": "zhou.ba@company.com",
+      "avatar": "https://via.placeholder.com/150",
+      "role": "manager",
+      "department": "開發部",
+      "joinDate": "2022-05-20",
+      "isActive": true,
+      "skills": [
+        "Java",
+        "Spring Boot",
+        "Microservices",
+        "DevOps"
+      ],
+      "createdAt": "2022-05-20T07:45:00Z",
+      "updatedAt": "2024-01-08T15:30:00Z"
+    },
+    {
+      "id": "38d2",
+      "name": "測試用戶 1750328351552",
+      "email": "test1750328351552@example.com",
+      "role": "user"
+    },
+    {
+      "id": "32e9",
+      "name": "測試用戶 1750383797644",
+      "email": "test1750383797644@example.com",
+      "role": "user"
+    },
+    {
+      "name": "Updated Demo User 1750408978222",
+      "email": "demo1750408978222@jsonserver.com",
+      "role": "user",
+      "id": "GNHJTP0"
+    }
+  ],
+  "posts": [
+    {
+      "id": "1",
+      "title": "TypeScript 基礎教學：從入門到實戰",
+      "content": "TypeScript 是 JavaScript 的超集，為 JavaScript 添加了靜態類型定義。本文將從基礎語法開始，逐步介紹 TypeScript 的核心概念和實際應用。",
+      "summary": "完整的 TypeScript 學習指南，適合初學者和有經驗的開發者",
+      "userId": 1,
+      "categoryId": 1,
+      "tags": [
+        "typescript",
+        "javascript",
+        "programming",
+        "tutorial"
+      ],
+      "status": "published",
+      "viewCount": 1250,
+      "likeCount": 89,
+      "commentCount": 15,
+      "readTime": 8,
+      "featured": true,
+      "publishedAt": "2024-01-01T12:00:00Z",
+      "createdAt": "2024-01-01T10:00:00Z",
+      "updatedAt": "2024-01-10T14:30:00Z"
+    },
+    {
+      "id": "2",
+      "title": "Vue 3 Composition API 實戰指南",
+      "content": "Vue 3 引入了 Composition API，提供了更靈活的組件邏輯組織方式。本文將透過實際範例展示如何使用 Composition API 建立可重用的邏輯。",
+      "summary": "深入探討 Vue 3 Composition API 的使用方法和最佳實踐",
+      "userId": 2,
+      "categoryId": 2,
+      "tags": [
+        "vue",
+        "composition-api",
+        "javascript",
+        "frontend"
+      ],
+      "status": "published",
+      "viewCount": 980,
+      "likeCount": 67,
+      "commentCount": 12,
+      "readTime": 6,
+      "featured": false,
+      "publishedAt": "2024-01-05T14:00:00Z",
+      "createdAt": "2024-01-05T12:00:00Z",
+      "updatedAt": "2024-01-08T16:45:00Z"
+    },
+    {
+      "id": "3",
+      "title": "Axios 與 TypeScript 的完美結合",
+      "content": "在 TypeScript 專案中使用 Axios 進行 HTTP 請求時，如何確保型別安全和良好的開發體驗？本文將介紹最佳實踐和常見模式。",
+      "summary": "學習如何在 TypeScript 中安全地使用 Axios 進行 API 調用",
+      "userId": 1,
+      "categoryId": 1,
+      "tags": [
+        "axios",
+        "typescript",
+        "api",
+        "http"
+      ],
+      "status": "draft",
+      "viewCount": 0,
+      "likeCount": 0,
+      "commentCount": 0,
+      "readTime": 10,
+      "featured": false,
+      "publishedAt": null,
+      "createdAt": "2024-01-10T15:30:00Z",
+      "updatedAt": "2024-01-12T11:20:00Z"
+    },
+    {
+      "id": "4",
+      "title": "前端測試策略：從單元測試到 E2E",
+      "content": "建立可靠的前端應用需要完善的測試策略。本文將介紹如何建立從單元測試到端對端測試的完整測試金字塔。",
+      "summary": "全面的前端測試指南，包含測試工具選擇和實戰經驗",
+      "userId": 4,
+      "categoryId": 3,
+      "tags": [
+        "testing",
+        "jest",
+        "cypress",
+        "quality-assurance"
+      ],
+      "status": "published",
+      "viewCount": 756,
+      "likeCount": 54,
+      "commentCount": 8,
+      "readTime": 12,
+      "featured": true,
+      "publishedAt": "2024-01-08T10:00:00Z",
+      "createdAt": "2024-01-07T16:00:00Z",
+      "updatedAt": "2024-01-09T09:15:00Z"
+    }
+  ],
+  "comments": [
+    {
+      "id": "1",
+      "postId": 1,
+      "userId": 2,
+      "parentId": null,
+      "content": "很棒的教學文章！對於剛開始學習 TypeScript 的人來說非常有幫助。",
+      "isApproved": true,
+      "createdAt": "2024-01-02T10:30:00Z",
+      "updatedAt": "2024-01-02T10:30:00Z"
+    },
+    {
+      "id": "2",
+      "postId": 1,
+      "userId": 3,
+      "parentId": 1,
+      "content": "同意！特別是泛型的部分解釋得很清楚。",
+      "isApproved": true,
+      "createdAt": "2024-01-02T14:45:00Z",
+      "updatedAt": "2024-01-02T14:45:00Z"
+    },
+    {
+      "id": "3",
+      "postId": 2,
+      "userId": 1,
+      "parentId": null,
+      "content": "Composition API 確實比 Options API 更靈活，但學習曲線也比較陡峭。",
+      "isApproved": true,
+      "createdAt": "2024-01-06T09:20:00Z",
+      "updatedAt": "2024-01-06T09:20:00Z"
+    },
+    {
+      "id": "4",
+      "postId": 4,
+      "userId": 5,
+      "parentId": null,
+      "content": "測試金字塔的概念很重要，希望能看到更多具體的實作範例。",
+      "isApproved": true,
+      "createdAt": "2024-01-09T16:10:00Z",
+      "updatedAt": "2024-01-09T16:10:00Z"
+    }
+  ],
+  "categories": [
+    {
+      "id": "1",
+      "name": "程式語言",
+      "slug": "programming-languages",
+      "description": "各種程式語言的學習資源和教學文章",
+      "color": "#3b82f6",
+      "postCount": 2,
+      "createdAt": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "2",
+      "name": "前端框架",
+      "slug": "frontend-frameworks",
+      "description": "Vue、React、Angular 等前端框架相關內容",
+      "color": "#10b981",
+      "postCount": 1,
+      "createdAt": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "3",
+      "name": "軟體測試",
+      "slug": "software-testing",
+      "description": "軟體測試方法論、工具和最佳實踐",
+      "color": "#f59e0b",
+      "postCount": 1,
+      "createdAt": "2024-01-01T00:00:00Z"
+    }
+  ],
+  "projects": [
+    {
+      "id": "1",
+      "name": "TypeScript 教學平台",
+      "description": "互動式 TypeScript 學習平台，提供實時程式碼編輯和執行環境",
+      "githubUrl": "https://github.com/example/typescript-tutorial",
+      "liveUrl": "https://typescript-tutorial.example.com",
+      "technologies": [
+        "TypeScript",
+        "Vue 3",
+        "Vite",
+        "Pinia"
+      ],
+      "status": "active",
+      "ownerId": 1,
+      "contributorIds": [
+        2,
+        3
+      ],
+      "startDate": "2023-09-01",
+      "lastUpdate": "2024-01-15",
+      "stars": 234,
+      "forks": 45,
+      "createdAt": "2023-09-01T10:00:00Z",
+      "updatedAt": "2024-01-15T14:30:00Z"
+    },
+    {
+      "id": "2",
+      "name": "API Mock 工具",
+      "description": "基於 MSW 的 API Mock 工具，支援動態資料生成和情境模擬",
+      "githubUrl": "https://github.com/example/api-mock-tool",
+      "liveUrl": "https://api-mock.example.com",
+      "technologies": [
+        "Node.js",
+        "MSW",
+        "Express",
+        "JSON Server"
+      ],
+      "status": "development",
+      "ownerId": 2,
+      "contributorIds": [
+        1,
+        4
+      ],
+      "startDate": "2023-11-15",
+      "lastUpdate": "2024-01-12",
+      "stars": 89,
+      "forks": 12,
+      "createdAt": "2023-11-15T14:00:00Z",
+      "updatedAt": "2024-01-12T16:45:00Z"
+    }
+  ],
+  "notifications": [
+    {
+      "id": "1",
+      "userId": 1,
+      "type": "comment",
+      "title": "新的評論",
+      "message": "李四 在你的文章「TypeScript 基礎教學」中留言了",
+      "relatedId": 1,
+      "relatedType": "post",
+      "isRead": false,
+      "createdAt": "2024-01-02T10:30:00Z"
+    },
+    {
+      "id": "2",
+      "userId": 2,
+      "type": "like",
+      "title": "文章獲得讚賞",
+      "message": "你的文章「Vue 3 Composition API 實戰指南」獲得了新的讚",
+      "relatedId": 2,
+      "relatedType": "post",
+      "isRead": true,
+      "createdAt": "2024-01-06T15:20:00Z"
+    }
+  ],
+  "analytics": [
+    {
+      "id": "1",
+      "date": "2024-01-01",
+      "pageViews": 156,
+      "uniqueVisitors": 89,
+      "newUsers": 23,
+      "bounceRate": 0.34,
+      "averageSessionDuration": 248
+    },
+    {
+      "id": "2",
+      "date": "2024-01-02",
+      "pageViews": 203,
+      "uniqueVisitors": 112,
+      "newUsers": 31,
+      "bounceRate": 0.28,
+      "averageSessionDuration": 301
+    },
+    {
+      "id": "3",
+      "date": "2024-01-03",
+      "pageViews": 189,
+      "uniqueVisitors": 95,
+      "newUsers": 18,
+      "bounceRate": 0.31,
+      "averageSessionDuration": 276
+    }
+  ]
+}
