@@ -6,6 +6,9 @@ import { useProgressStore } from './progress'
 export const useNavigationStore = defineStore('navigation', () => {
   const progressStore = useProgressStore()
 
+  // 側邊欄收合狀態 - 從 localStorage 讀取初始狀態
+  const isCollapsed = ref(localStorage.getItem('sidebar-collapsed') === 'true')
+
   // 新的8個章節，分為4個階段
   const sections = ref<NavigationItem[]>([
     // 第一階段：基礎入門
@@ -186,6 +189,21 @@ export const useNavigationStore = defineStore('navigation', () => {
     return current?.stage || null
   }
 
+  function toggleSidebar() {
+    isCollapsed.value = !isCollapsed.value
+    localStorage.setItem('sidebar-collapsed', isCollapsed.value.toString())
+  }
+
+  function collapseSidebar() {
+    isCollapsed.value = true
+    localStorage.setItem('sidebar-collapsed', 'true')
+  }
+
+  function expandSidebar() {
+    isCollapsed.value = false
+    localStorage.setItem('sidebar-collapsed', 'false')
+  }
+
   return {
     sections,
     stageGroups,
@@ -193,11 +211,15 @@ export const useNavigationStore = defineStore('navigation', () => {
     hasNextSection,
     hasPreviousSection,
     stageProgress,
+    isCollapsed,
     setCurrentSection,
     markSectionCompleted,
     getNextSection,
     getPreviousSection,
     getSectionsByStage,
+    toggleSidebar,
+    collapseSidebar,
+    expandSidebar,
     getCurrentStage,
   }
 })

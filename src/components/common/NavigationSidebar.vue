@@ -1,6 +1,14 @@
 <template>
-    <aside class="navigation-sidebar">
-        <div class="sidebar-header">
+    <aside class="navigation-sidebar" :class="{ 'navigation-sidebar--collapsed': navigationStore.isCollapsed }">
+        <!-- 收合按鈕 -->
+        <button class="sidebar-toggle" @click="navigationStore.toggleSidebar"
+                :title="navigationStore.isCollapsed ? '展開側邊欄' : '收合側邊欄'">
+            <span class="toggle-icon" :class="{ 'toggle-icon--collapsed': navigationStore.isCollapsed }">
+                {{ navigationStore.isCollapsed ? '→' : '←' }}
+            </span>
+        </button>
+
+        <div class="sidebar-header" v-show="!navigationStore.isCollapsed">
             <h3>Vue3 教育訓練</h3>
             <p class="subtitle">TypeScript & Axios 應用</p>
             <div class="progress-summary">
@@ -15,7 +23,7 @@
             </div>
         </div>
 
-        <nav class="sidebar-nav">
+        <nav class="sidebar-nav" v-show="!navigationStore.isCollapsed">
             <div v-for="(stageSections, stage) in navigationStore.stageGroups" :key="stage" class="stage-group">
                 <div class="stage-header">
                     <h4 class="stage-title">{{ stage }}</h4>
@@ -53,9 +61,9 @@
             </div>
         </nav>
 
-        <div class="sidebar-footer">
 
 
+        <div class="sidebar-footer" v-show="!navigationStore.isCollapsed">
             <button class="btn-reset" @click="resetProgress" title="重置進度">
                 重置進度
             </button>
@@ -96,6 +104,45 @@ function resetProgress() {
     top: 0;
     z-index: 100;
     overflow-y: auto;
+    transition: width 0.3s ease;
+}
+
+.navigation-sidebar--collapsed {
+    width: 0;
+    border-right: none;
+}
+
+.sidebar-toggle {
+    position: absolute;
+    top: 20px;
+    right: -12px;
+    width: 24px;
+    height: 24px;
+    background: #3182ce;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    z-index: 101;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar-toggle:hover {
+    background: #2c5aa0;
+    transform: scale(1.1);
+}
+
+.toggle-icon {
+    transition: transform 0.2s ease;
+}
+
+.toggle-icon--collapsed {
+    transform: scaleX(-1);
 }
 
 .sidebar-header {
@@ -303,11 +350,22 @@ function resetProgress() {
     border-color: #cbd5e0;
 }
 
+
+
 @media (max-width: 768px) {
     .navigation-sidebar {
         width: 100%;
         height: auto;
         position: relative;
+    }
+
+    .navigation-sidebar--collapsed {
+        width: 0;
+    }
+
+    .sidebar-toggle {
+        right: 20px;
+        top: 20px;
     }
 }
 </style>

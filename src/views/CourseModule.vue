@@ -2,7 +2,15 @@
   <div class="course-module">
     <NavigationSidebar />
 
-    <main class="main-content">
+    <main class="main-content" :class="{ 'main-content--expanded': navigationStore.isCollapsed }">
+      <!-- 收合按鈕（當側邊欄隱藏時顯示在主內容區域） -->
+      <button v-if="navigationStore.isCollapsed"
+              class="main-sidebar-toggle"
+              @click="navigationStore.toggleSidebar"
+              title="展開側邊欄">
+        <span class="main-toggle-icon">☰</span>
+      </button>
+
       <div class="content-header">
         <h1>{{ currentSection?.title || '歡迎來到 TypeScript 教學課程' }}</h1>
         <div class="course-badge" v-if="currentSection">
@@ -220,6 +228,42 @@ onMounted(() => {
   margin-left: 320px;
   padding: 2rem;
   max-width: calc(100vw - 320px);
+  transition: margin-left 0.3s ease, max-width 0.3s ease;
+}
+
+.main-content--expanded {
+  margin-left: 0;
+  max-width: 100vw;
+}
+
+.main-sidebar-toggle {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  width: 40px;
+  height: 40px;
+  background: #3182ce;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  z-index: 102;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.main-sidebar-toggle:hover {
+  background: #2c5aa0;
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.main-toggle-icon {
+  transition: transform 0.2s ease;
 }
 
 .content-header {
@@ -497,7 +541,8 @@ onMounted(() => {
 }
 
 @media (max-width: 768px) {
-  .main-content {
+  .main-content,
+  .main-content--expanded {
     margin-left: 0;
     max-width: 100vw;
     padding: 1rem;
