@@ -79,6 +79,23 @@
 
                 <CodeBlock title="類別裝飾器實作" :code="classDecoratorCode" language="typescript"
                     explanation="類別裝飾器可以用來添加metadata、修改構造函數等" />
+
+                <CodeComparison
+                    title="類別裝飾器編譯對比"
+                    beforeTitle="TypeScript 裝飾器語法"
+                    afterTitle="編譯後的 JavaScript"
+                    :beforeCode="classDecoratorOriginal"
+                    :afterCode="classDecoratorCompiled"
+                    language="typescript"
+                    afterLanguage="javascript"
+                    explanation="TypeScript 裝飾器會被編譯成函數調用的形式，並使用 Reflect.decorate 進行元數據處理"
+                    :highlights="[
+                        '裝飾器 @Component 變成了 Component() 函數調用',
+                        '類別定義被包裝在 __decorate 函數中',
+                        '裝飾器按照聲明順序執行',
+                        '編譯後的代碼包含了反射元數據'
+                    ]"
+                />
             </div>
 
             <div class="decorator-category">
@@ -87,6 +104,23 @@
 
                 <CodeBlock title="方法裝飾器範例" :code="methodDecoratorCode" language="typescript"
                     explanation="方法裝飾器常用於日誌記錄、效能監控、權限檢查等" />
+
+                <CodeComparison
+                    title="方法裝飾器編譯對比"
+                    beforeTitle="TypeScript 方法裝飾器"
+                    afterTitle="編譯後的 JavaScript"
+                    :beforeCode="methodDecoratorOriginal"
+                    :afterCode="methodDecoratorCompiled"
+                    language="typescript"
+                    afterLanguage="javascript"
+                    explanation="方法裝飾器會修改屬性描述符，並在編譯時包裝原始方法"
+                    :highlights="[
+                        '方法裝飾器透過 Object.defineProperty 修改方法',
+                        '原始方法被保存並包裝在新的函數中',
+                        '裝飾器邏輯在方法調用前後執行',
+                        '保持了原始方法的 this 綁定'
+                    ]"
+                />
             </div>
 
             <div class="decorator-category">
@@ -95,6 +129,23 @@
 
                 <CodeBlock title="屬性裝飾器應用" :code="propertyDecoratorCode" language="typescript"
                     explanation="屬性裝飾器可以用於驗證、格式化、序列化等" />
+
+                <CodeComparison
+                    title="屬性裝飾器編譯對比"
+                    beforeTitle="TypeScript 屬性裝飾器"
+                    afterTitle="編譯後的 JavaScript"
+                    :beforeCode="propertyDecoratorOriginal"
+                    :afterCode="propertyDecoratorCompiled"
+                    language="typescript"
+                    afterLanguage="javascript"
+                    explanation="屬性裝飾器會重新定義屬性的 getter 和 setter，實現屬性攔截"
+                    :highlights="[
+                        '屬性裝飾器透過 Object.defineProperty 重新定義屬性',
+                        '原始屬性值被存儲在閉包中',
+                        'getter 和 setter 函數包含了裝飾器邏輯',
+                        '屬性的 enumerable 和 configurable 特性被保留'
+                    ]"
+                />
             </div>
         </div>
 
@@ -149,6 +200,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import CodeBlock from '@/components/common/CodeBlock.vue'
+import CodeComparison from '@/components/common/CodeComparison.vue'
 
 interface Props {
     section?: {
@@ -642,6 +694,160 @@ async function example() {
         filter: { role: 'admin' }
     })
 }`)
+
+// 類別裝飾器編譯前後對比範例
+const classDecoratorOriginal = ref(`// TypeScript 裝飾器語法
+function Component(options: { selector: string }) {
+    return function (target: any) {
+        target.selector = options.selector
+        target.isComponent = true
+        return target
+    }
+}
+
+@Component({ selector: 'app-user' })
+class UserComponent {
+    name: string = 'User'
+
+    render() {
+        return \`<div>Hello \${this.name}</div>\`
+    }
+}`)
+
+const classDecoratorCompiled = ref(`// 編譯後的 JavaScript
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function")
+        r = Reflect.decorate(decorators, target, key, desc);
+    else
+        for (var i = decorators.length - 1; i >= 0; i--)
+            if (d = decorators[i])
+                r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+function Component(options) {
+    return function (target) {
+        target.selector = options.selector;
+        target.isComponent = true;
+        return target;
+    };
+}
+
+var UserComponent = /** @class */ (function () {
+    function UserComponent() {
+        this.name = 'User';
+    }
+    UserComponent.prototype.render = function () {
+        return "<div>Hello " + this.name + "</div>";
+    };
+    UserComponent = __decorate([
+        Component({ selector: 'app-user' })
+    ], UserComponent);
+    return UserComponent;
+}());`)
+
+// 方法裝飾器編譯前後對比範例
+const methodDecoratorOriginal = ref(`// TypeScript 方法裝飾器
+function Log(target: any, propertyName: string, descriptor: PropertyDescriptor) {
+    const method = descriptor.value
+
+    descriptor.value = function (...args: any[]) {
+        console.log(\`Calling \${propertyName} with:\`, args)
+        const result = method.apply(this, args)
+        console.log(\`\${propertyName} returned:\`, result)
+        return result
+    }
+}
+
+class UserService {
+    @Log
+    getUser(id: number): Promise<User> {
+        return fetch(\`/api/users/\${id}\`).then(res => res.json())
+    }
+}`)
+
+const methodDecoratorCompiled = ref(`// 編譯後的 JavaScript
+function Log(target, propertyName, descriptor) {
+    var method = descriptor.value;
+    descriptor.value = function () {
+        var args = [];
+        for (var _i = 0; _i < arguments.length; _i++) {
+            args[_i] = arguments[_i];
+        }
+        console.log("Calling " + propertyName + " with:", args);
+        var result = method.apply(this, args);
+        console.log(propertyName + " returned:", result);
+        return result;
+    };
+}
+
+var UserService = /** @class */ (function () {
+    function UserService() {
+    }
+    UserService.prototype.getUser = function (id) {
+        return fetch("/api/users/" + id).then(function (res) { return res.json(); });
+    };
+    __decorate([
+        Log
+    ], UserService.prototype, "getUser", null);
+    return UserService;
+}());`)
+
+// 屬性裝飾器編譯前後對比範例
+const propertyDecoratorOriginal = ref(`// TypeScript 屬性裝飾器
+function Validate(validator: (value: any) => boolean) {
+    return function (target: any, propertyName: string) {
+        let value: any
+
+        Object.defineProperty(target, propertyName, {
+            get() { return value },
+            set(newValue: any) {
+                if (!validator(newValue)) {
+                    throw new Error(\`Invalid value for \${propertyName}\`)
+                }
+                value = newValue
+            }
+        })
+    }
+}
+
+class User {
+    @Validate(val => typeof val === 'string' && val.length > 0)
+    name: string
+
+    constructor(name: string) {
+        this.name = name
+    }
+}`)
+
+const propertyDecoratorCompiled = ref(`// 編譯後的 JavaScript
+function Validate(validator) {
+    return function (target, propertyName) {
+        var value;
+        Object.defineProperty(target, propertyName, {
+            get: function () { return value; },
+            set: function (newValue) {
+                if (!validator(newValue)) {
+                    throw new Error("Invalid value for " + propertyName);
+                }
+                value = newValue;
+            },
+            enumerable: true,
+            configurable: true
+        });
+    };
+}
+
+var User = /** @class */ (function () {
+    function User(name) {
+        this.name = name;
+    }
+    __decorate([
+        Validate(function (val) { return typeof val === 'string' && val.length > 0; })
+    ], User.prototype, "name", void 0);
+    return User;
+}());`)
 </script>
 
 <style scoped>
